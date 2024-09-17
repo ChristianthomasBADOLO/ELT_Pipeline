@@ -23,3 +23,9 @@ This project showcases modern data engineering practices on the Snowflake platfo
 Perfect for those wanting to leverage Snowflake's power for social media analytics. The pipeline demonstrates best practices in cloud-based data warehousing and transformation.
 
 Contributions and feedback are welcome! Whether you're a Snowflake expert or just getting started, your insights can help improve this project.
+
+## References
+- https://airbyte.com/how-to-sync/instagram-to-snowflake-data-cloud
+- https://windsor.ai/data-field/instagram/
+- https://hevodata.com/learn/instagram-business-to-snowflake/#1.2
+- image https://datastreamer.io/connector/instagram-to-snowflake-pipeline/
