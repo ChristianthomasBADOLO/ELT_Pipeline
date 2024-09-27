@@ -1,6 +1,8 @@
+# %%
 import instaloader
 import csv
 from datetime import datetime
+
 
 def extract_instagram_data(username, output_file):
     # Créer une instance de Instaloader
@@ -38,3 +40,4 @@ def extract_instagram_data(username, output_file):
 username = "m_usicheals"
 output_file = "instagram_data.csv"
 extract_instagram_data(username, output_file)
+# %%
