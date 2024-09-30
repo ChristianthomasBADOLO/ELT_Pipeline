@@ -1,31 +1,41 @@
-# Instagram Analytics ELT Pipeline with Snowflake
+# Amazon Books Analytics ETL Pipeline with Snowflake
 
-# Description
-A robust Extract, Load, Transform (ELT) pipeline for Instagram data analytics leveraging Snowflake's powerful cloud data platform.
+## Description
+A robust Extract, Transform, Load (ETL) pipeline for analyzing Amazon book data, leveraging the powerful Snowflake cloud platform.
 
 ## Key Features:
-- Data extraction from Instagram using Python and Instaloader
-- Efficient data loading into Snowflake via Amazon S3
-- Data transformation using dbt (data build tool) within Snowflake
-- Pipeline orchestration with Apache Airflow
-- Scalable architecture designed for large Instagram datasets
-- Seamless integration with visualization tools like Tableau or Looker
+- Web scraping of Amazon book data using BeautifulSoup
+- Pipeline orchestration with Apache Airflow in a Docker environment
+- Intermediate data storage in PostgreSQL
+- Data loading into Snowflake (in development)
+- Scalable architecture designed for large Amazon book datasets
+- Planned future integration with Power BI for visualization and reporting
 
-This project showcases modern data engineering practices on the Snowflake platform, providing deep insights into social media engagement and user growth. It's ideal for data engineers, social media analysts, and businesses looking to harness the full potential of their Instagram data for strategic decision-making.
+This project showcases modern data engineering practices, providing deep insights into Amazon book trends. It's ideal for data engineers, market analysts, and businesses looking to harness the full potential of e-commerce data for strategic decision-making.
 
 ## Tech Stack:
 - Python
-- Snowflake
-- dbt (data build tool)
-- Apache Airflow
-- Instaloader
+- BeautifulSoup for web scraping
+- Apache Airflow for orchestration
+- Docker for containerization
+- PostgreSQL for intermediate storage
+- Snowflake for data storage and analysis (integration in progress)
+- Power BI for visualization (planned)
 
-Perfect for those wanting to leverage Snowflake's power for social media analytics. The pipeline demonstrates best practices in cloud-based data warehousing and transformation.
+This pipeline demonstrates best practices in web data extraction, workflow orchestration, and cloud-based data warehousing.
 
-Contributions and feedback are welcome! Whether you're a Snowflake expert or just getting started, your insights can help improve this project.
+## In Development
+- Full integration with Snowflake for data storage and analysis
+- Utilization of Power BI to create reports and visualizations from collected data
 
-## References
-- https://airbyte.com/how-to-sync/instagram-to-snowflake-data-cloud
-- https://windsor.ai/data-field/instagram/
-- https://hevodata.com/learn/instagram-business-to-snowflake/#1.2
-- image https://datastreamer.io/connector/instagram-to-snowflake-pipeline/
+## Installation and Usage
+(To be completed with specific instructions for installing and running the project, including Docker and Airflow configuration)
+
+## Airflow DAG Structure
+(Add here a description of your Airflow DAG structure, the tasks it includes, and how they are sequenced)
+
+## Next Steps
+- Finalize Snowflake integration
+- Develop Power BI dashboards for data analysis
+- Optimize scraping and data processing performance
+- Add advanced analysis features (e.g., sentiment analysis on book reviews)
