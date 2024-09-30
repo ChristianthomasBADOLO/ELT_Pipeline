@@ -11,7 +11,7 @@ dag = DAG(
     'fetch_and_store_amazon_books',
     default_args=default_args,
     description='A simple DAG to fetch book data from Amazon and store it in Postgres',
-    schedule_interval=timedelta(days=1),
+    schedule_interval=timedelta(minutes=1),
 )
 
 fetch_book_data_task = PythonOperator(
