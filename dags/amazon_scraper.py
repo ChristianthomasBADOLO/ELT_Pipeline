@@ -1,9 +1,10 @@
+# %%
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-from config import headers
+from config_file import headers
 
-def get_amazon_data_books(num_books, ti):
+def get_amazon_data_books(num_books):
     base_url = f"https://www.amazon.com/s?k=data+engineering+books"
     books = []
     seen_titles = set()
@@ -42,6 +43,15 @@ def get_amazon_data_books(num_books, ti):
 
     books = books[:num_books]
     df = pd.DataFrame(books)
-    df.drop_duplicates(subset="Title", inplace=True)
+    df = pd.DataFrame(books)
     
-    ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    df.drop_duplicates(subset="Title", inplace=True)
+    df.to_csv('books.csv', index=False)
+    
+    
+    
+    #ti.xcom_push(key='book_data', value=df.to_dict('records'))
+
+# %%
+get_amazon_data_books(5)
+# %%
