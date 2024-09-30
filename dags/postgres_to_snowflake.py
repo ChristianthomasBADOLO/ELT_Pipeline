@@ -13,17 +13,17 @@ default_args = {
 dag = DAG(
     'postgres_to_snowflake',
     default_args=default_args,
-    schedule_interval='@daily',  # Set your desired schedule
+    schedule_interval=timedelta(minutes=5),  # Set your desired schedule
 )
 # Define PostgreSQL and Snowflake connections
-postgres_conn_id = 'your_postgres_connection'
-snowflake_conn_id = 'your_snowflake_connection'
+postgres_conn_id = 'books_connection'
+snowflake_conn_id = 'snowflake_connection'
 
 # Example task to extract data from PostgreSQL
 extract_postgres_data = PostgresOperator(
     task_id='extract_postgres_data',
     postgres_conn_id=postgres_conn_id,
-    sql='SELECT * FROM your_table;',
+    sql='SELECT * FROM book_data;',
     dag=dag,
 )
 
@@ -32,7 +32,7 @@ load_snowflake_data = PostgresToSnowflakeOperator(
     task_id='load_snowflake_data',
     postgres_conn_id=postgres_conn_id,
     snowflake_conn_id=snowflake_conn_id,
-    sql='SELECT * FROM your_table WHERE ds = {{ ds }};',
+    sql='SELECT * FROM book_data WHERE ds = {{ ds }};',
     snowflake_table='your_snowflake_table',
     dag=dag,
 )
