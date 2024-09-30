@@ -2,6 +2,7 @@
 
 ## Description
 A robust Extract, Transform, Load (ETL) pipeline for analyzing Amazon book data, leveraging the powerful Snowflake cloud platform.
+![alt text](<data_engineering - Page 1.jpeg>)
 
 ## Key Features:
 - Web scraping of Amazon book data using BeautifulSoup
@@ -28,8 +29,6 @@ This pipeline demonstrates best practices in web data extraction, workflow orche
 - Full integration with Snowflake for data storage and analysis
 - Utilization of Power BI to create reports and visualizations from collected data
 
-## Installation and Usage
-(To be completed with specific instructions for installing and running the project, including Docker and Airflow configuration)
 
 ## Airflow DAG Structure
 (Add here a description of your Airflow DAG structure, the tasks it includes, and how they are sequenced)
