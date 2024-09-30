@@ -4,7 +4,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from config_file import headers
 
-def get_amazon_data_books(num_books):
+def get_amazon_data_books(num_books, ti):
     base_url = f"https://www.amazon.com/s?k=data+engineering+books"
     books = []
     seen_titles = set()
@@ -50,8 +50,8 @@ def get_amazon_data_books(num_books):
     
     
     
-    #ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    ti.xcom_push(key='book_data', value=df.to_dict('records'))
 
-# %%
-get_amazon_data_books(5)
-# %%
+# # %%
+# get_amazon_data_books(5)
+# # %%
