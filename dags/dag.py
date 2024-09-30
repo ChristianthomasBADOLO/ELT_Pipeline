@@ -1,54 +1,45 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
 
-# Define default arguments for the DAG
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'start_date': datetime(2024, 9, 25),
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-}
+from amazon_scraper import get_amazon_data_books
+from postgres_operations import insert_book_data_into_postgres
+from config_file import default_args, NUM_BOOKS_TO_FETCH
 
-# Define the DAG
 dag = DAG(
-    'simple_example_dag',
+    'fetch_and_store_amazon_books',
     default_args=default_args,
-    description='A simple example DAG',
+    description='A simple DAG to fetch book data from Amazon and store it in Postgres',
     schedule_interval=timedelta(days=1),
 )
 
-# Define some example tasks
-def task_1():
-    print("Executing Task 1")
-
-def task_2():
-    print("Executing Task 2")
-
-def task_3():
-    print("Executing Task 3")
-
-# Create PythonOperator tasks
-t1 = PythonOperator(
-    task_id='task_1',
-    python_callable=task_1,
+fetch_book_data_task = PythonOperator(
+    task_id='fetch_book_data',
+    python_callable=get_amazon_data_books,
+    op_args=[NUM_BOOKS_TO_FETCH],
     dag=dag,
 )
 
-t2 = PythonOperator(
-    task_id='task_2',
-    python_callable=task_2,
+create_table_task = PostgresOperator(
+    task_id='create_table',
+    postgres_conn_id='books_connection',
+    sql="""
+    CREATE TABLE IF NOT EXISTS books (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        authors TEXT,
+        price TEXT,
+        rating TEXT
+    );
+    """,
     dag=dag,
 )
 
-t3 = PythonOperator(
-    task_id='task_3',
-    python_callable=task_3,
+insert_book_data_task = PythonOperator(
+    task_id='insert_book_data',
+    python_callable=insert_book_data_into_postgres,
     dag=dag,
 )
 
-# Set up task dependencies
-t1 >> [t2, t3]
+fetch_book_data_task >> create_table_task >> insert_book_data_task
