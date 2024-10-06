@@ -30,9 +30,6 @@ This pipeline demonstrates best practices in web data extraction, workflow orche
 - Utilization of Power BI to create reports and visualizations from collected data
 
 
-## Airflow DAG Structure
-(Add here a description of your Airflow DAG structure, the tasks it includes, and how they are sequenced)
-
 ## Next Steps
 - Finalize Snowflake integration
 - Develop Power BI dashboards for data analysis
